@@ -4,11 +4,12 @@
 > Only the latest master branch of zfr-cors will be ported.  Older tags will not be copied to this version.
 
 
-<!--
-[![Build Status](https://travis-ci.org/zf-fr/zfr-cors.png?branch=master)](https://travis-ci.org/zf-fr/zfr-cors)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/zf-fr/zfr-cors/badges/quality-score.png?s=47504d5f5a04f88fb40aebbd524d9d241c2ae588)](https://scrutinizer-ci.com/g/zf-fr/zfr-cors/)
-[![Coverage Status](https://coveralls.io/repos/zf-fr/zfr-cors/badge.png?branch=master)](https://coveralls.io/r/zf-fr/zfr-cors?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/zfr/zfr-cors/v/stable.png)](https://packagist.org/packages/zfr/zfr-cors)
+[![Build Status](https://travis-ci.com/Laminas-Commons/lmccors.svg?branch=master)](https://travis-ci.com/Laminas-Commons/lmccors)
+[![Code Coverage](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/laminas-commons/lmc-cors/v)](//packagist.org/packages/laminas-commons/lmc-cors)
+[![License](https://poser.pugx.org/laminas-commons/lmc-cors/license)](//packagist.org/packages/laminas-commons/lmc-cors)
+[![Total Downloads](https://poser.pugx.org/laminas-commons/lmc-cors/downloads)](//packagist.org/packages/laminas-commons/lmc-cors)
+<!--[![Coverage Status](https://coveralls.io/repos/zf-fr/zfr-cors/badge.png?branch=master)](https://coveralls.io/r/zf-fr/zfr-cors?branch=master)
 -->
 
 LmcCors is a simple Laminas MVC module that helps you to deal with Cross-Origin Resource Sharing (CORS).
