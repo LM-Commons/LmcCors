@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="zfr-cors Coding Standard">
-    <description>zfr-cors coding standard</description>
+<ruleset name="lmc-cors Coding Standard">
+    <description>lmc-cors coding standard</description>
 
     <!-- display progress -->
     <arg value="p"/>
@@ -23,7 +23,7 @@
 
     <!-- Paths to check -->
     <file>config/module.config.php</file>
-    <file>config/zfr_cors.global.php.dist</file>
+    <file>config/lmc_cors.global.php.dist</file>
     <file>src</file>
     <file>tests</file>
     <file>tests/TestConfiguration.php.dist</file>
