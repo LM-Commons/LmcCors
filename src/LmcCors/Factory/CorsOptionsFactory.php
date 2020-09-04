@@ -37,7 +37,7 @@ class CorsOptionsFactory
     {
         /* @var $config array */
         $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config['zfr_cors']) ? $config['zfr_cors'] : [];
+        $config = isset($config['lmc_cors']) ? $config['lmc_cors'] : [];
 
         return new CorsOptions($config);
     }

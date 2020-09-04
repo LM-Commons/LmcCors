@@ -6,7 +6,7 @@
  */
 
 return [
-    'zfr_cors' => [
+    'lmc_cors' => [
          /**
           * Set the list of allowed origins domain with protocol.
           */

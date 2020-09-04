@@ -5,3 +5,4 @@ tmp/
 vendor/
 build/
 /.idea/
+.phpunit*

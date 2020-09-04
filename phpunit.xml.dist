@@ -10,7 +10,7 @@
     processIsolation="false"
     backupGlobals="false"
 >
-    <testsuite name="ZfrCors tests">
+    <testsuite name="LmcCors tests">
         <directory>./tests</directory>
     </testsuite>
     <filter>
