@@ -16,16 +16,16 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Mvc;
+namespace LmcCors\Mvc;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Http\Response as HttpResponse;
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\MvcEvent;
-use ZfrCors\Exception\DisallowedOriginException;
-use ZfrCors\Exception\InvalidOriginException;
-use ZfrCors\Service\CorsService;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\MvcEvent;
+use LmcCors\Exception\DisallowedOriginException;
+use LmcCors\Exception\InvalidOriginException;
+use LmcCors\Service\CorsService;
 
 /**
  * CorsRequestListener
@@ -71,7 +71,7 @@ class CorsRequestListener extends AbstractListenerAggregate
      * Handle a CORS preflight request
      *
      * @param  MvcEvent          $event
-     * @return null|HttpResponse
+     * @return null|HttpResponse|void
      */
     public function onCorsPreflight(MvcEvent $event)
     {

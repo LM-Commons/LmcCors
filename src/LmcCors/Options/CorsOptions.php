@@ -16,9 +16,9 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Options;
+namespace LmcCors\Options;
 
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 
 /**
  * CorsOptions

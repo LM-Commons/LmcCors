@@ -22,11 +22,11 @@ use PHPUnit\Framework\TestCase as TestCase;
 use ZfrCorsTest\Util\ServiceManagerFactory;
 
 /**
- * Integration tests for {@see \ZfrCors\Service\CorsService}
+ * Integration tests for {@see \LmcCors\Service\CorsService}
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \ZfrCors\Factory\CorsRequestListenerFactory
+ * @covers \LmcCors\Factory\CorsRequestListenerFactory
  * @group Coverage
  */
 class CorsRequestListenerFactoryTest extends TestCase
@@ -34,8 +34,8 @@ class CorsRequestListenerFactoryTest extends TestCase
     public function testCanCreateCorsRequestListener()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $listener       = $serviceManager->get('ZfrCors\Mvc\CorsRequestListener');
+        $listener       = $serviceManager->get('LmcCors\Mvc\CorsRequestListener');
 
-        $this->assertInstanceOf('ZfrCors\Mvc\CorsRequestListener', $listener);
+        $this->assertInstanceOf('LmcCors\Mvc\CorsRequestListener', $listener);
     }
 }

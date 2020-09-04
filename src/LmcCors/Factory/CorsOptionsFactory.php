@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Factory;
+namespace LmcCors\Factory;
 
 use Interop\Container\ContainerInterface;
-use ZfrCors\Options\CorsOptions;
+use LmcCors\Options\CorsOptions;
 
 /**
  * CorsOptionsFactory

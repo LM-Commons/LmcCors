@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-$modules = ['ZfrCors'];
+$modules = ['LmcCors'];
 
-if (class_exists('Zend\Router\Module')) {
-    array_unshift($modules, 'Zend\Router');
+if (class_exists('Laminas\Router\Module')) {
+    array_unshift($modules, 'Laminas\Router');
 }
 
 return [

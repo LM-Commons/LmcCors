@@ -16,30 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Factory;
+namespace LmcCors\Exception;
 
-use Interop\Container\ContainerInterface;
-use ZfrCors\Mvc\CorsRequestListener;
-use ZfrCors\Service\CorsService;
+use DomainException;
 
 /**
- * CorsRequestListenerFactory
- *
  * @license MIT
  * @author  Florent Blaison <florent.blaison@gmail.com>
  */
-class CorsRequestListenerFactory
+class DisallowedOriginException extends DomainException implements ExceptionInterface
 {
-    /**
-     * {@inheritDoc}
-     *
-     * @return CorsRequestListener
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, $options = null)
-    {
-        /* @var $corsService CorsService */
-        $corsService = $container->get('ZfrCors\Service\CorsService');
-
-        return new CorsRequestListener($corsService);
-    }
 }

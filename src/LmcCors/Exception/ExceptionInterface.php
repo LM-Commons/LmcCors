@@ -16,30 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Factory;
-
-use Interop\Container\ContainerInterface;
-use ZfrCors\Options\CorsOptions;
-use ZfrCors\Service\CorsService;
+namespace LmcCors\Exception;
 
 /**
- * CorsServiceFactory
- *
  * @license MIT
  * @author  Florent Blaison <florent.blaison@gmail.com>
  */
-class CorsServiceFactory
+interface ExceptionInterface
 {
-    /**
-     * {@inheritDoc}
-     *
-     * @return CorsService
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, $options = null)
-    {
-        /* @var $corsOptions CorsOptions */
-        $corsOptions = $container->get('ZfrCors\Options\CorsOptions');
-
-        return new CorsService($corsOptions);
-    }
 }

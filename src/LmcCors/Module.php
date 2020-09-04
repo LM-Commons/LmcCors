@@ -16,12 +16,39 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Exception;
+namespace LmcCors;
+
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
 /**
- * @license MIT
+ * @licence MIT
  * @author  Florent Blaison <florent.blaison@gmail.com>
  */
-interface ExceptionInterface
+class Module implements BootstrapListenerInterface, ConfigProviderInterface
 {
+
+    /**
+     * {@inheritDoc}
+     */
+    public function onBootstrap(EventInterface $event)
+    {
+        /* @var $application \Laminas\Mvc\Application */
+        $application     = $event->getTarget();
+        $serviceManager  = $application->getServiceManager();
+        $eventManager    = $application->getEventManager();
+
+        /** @var \LmcCors\Mvc\CorsRequestListener $listener */
+        $listener = $serviceManager->get('LmcCors\Mvc\CorsRequestListener');
+        $listener->attach($eventManager);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getConfig()
+    {
+        return include __DIR__ . '/../../config/module.config.php';
+    }
 }

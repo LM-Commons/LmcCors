@@ -22,11 +22,11 @@ use PHPUnit\Framework\TestCase as TestCase;
 use ZfrCorsTest\Util\ServiceManagerFactory;
 
 /**
- * Integration tests for {@see \ZfrCors\Service\CorsService}
+ * Integration tests for {@see \LmcCors\Service\CorsService}
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \ZfrCors\Factory\CorsOptionsFactory
+ * @covers \LmcCors\Factory\CorsOptionsFactory
  * @group Coverage
  */
 class CorsOptionsFactoryTest extends TestCase
@@ -34,8 +34,8 @@ class CorsOptionsFactoryTest extends TestCase
     public function testCanCreateOptions()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $options        = $serviceManager->get('ZfrCors\Options\CorsOptions');
+        $options        = $serviceManager->get('LmcCors\Options\CorsOptions');
 
-        $this->assertInstanceOf('ZfrCors\Options\CorsOptions', $options);
+        $this->assertInstanceOf('LmcCors\Options\CorsOptions', $options);
     }
 }

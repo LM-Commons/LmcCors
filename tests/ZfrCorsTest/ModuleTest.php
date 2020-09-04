@@ -19,10 +19,10 @@
 namespace ZfrCorsTest;
 
 use PHPUnit\Framework\TestCase;
-use ZfrCors\Module;
+use LmcCors\Module;
 
 /**
- * Tests for {@see \ZfrCors\Module}
+ * Tests for {@see \LmcCors\Module}
  *
  * @license MIT
  * @author  Marco Pivetta <ocramius@gmail.com>
@@ -32,7 +32,7 @@ use ZfrCors\Module;
 class ModuleTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers \ZfrCors\Module::getConfig
+     * @covers \LmcCors\Module::getConfig
      */
     public function testGetConfig()
     {
@@ -43,7 +43,7 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers \ZfrCors\Module::onBootstrap
+     * @covers \LmcCors\Module::onBootstrap
      */
     public function testAssertListenerIsCorrectlyRegistered()
     {
@@ -54,7 +54,7 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
             ->getMock();
         $eventManager   = $this->getMockBuilder('Zend\EventManager\EventManagerInterface')->getMock();
         $serviceManager = $this->getMockBuilder('Zend\ServiceManager\ServiceManager')->getMock();
-        $corsListener   = $this->getMockBuilder('ZfrCors\Mvc\CorsRequestListener', [], [], '', false)
+        $corsListener   = $this->getMockBuilder('LmcCors\Mvc\CorsRequestListener', [], [], '', false)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -64,7 +64,7 @@ class ModuleTest extends \PHPUnit\Framework\TestCase
         $serviceManager
             ->expects($this->any())
             ->method('get')
-            ->with('ZfrCors\Mvc\CorsRequestListener')
+            ->with('LmcCors\Mvc\CorsRequestListener')
             ->will($this->returnValue($corsListener));
 
         $corsListener->expects($this->once())->method('attach')->with($eventManager);

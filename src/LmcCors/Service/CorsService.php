@@ -16,17 +16,17 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors\Service;
+namespace LmcCors\Service;
 
-use Zend\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
-use Zend\Router\Http\RouteMatch;
-use Zend\Http\Header;
-use Zend\Uri\UriFactory;
-use ZfrCors\Exception\DisallowedOriginException;
-use ZfrCors\Exception\InvalidOriginException;
-use ZfrCors\Options\CorsOptions;
-use Zend\Http\Request as HttpRequest;
-use Zend\Http\Response as HttpResponse;
+use Laminas\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
+use Laminas\Router\Http\RouteMatch;
+use Laminas\Http\Header;
+use Laminas\Uri\UriFactory;
+use LmcCors\Exception\DisallowedOriginException;
+use LmcCors\Exception\InvalidOriginException;
+use LmcCors\Options\CorsOptions;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Http\Response as HttpResponse;
 
 /**
  * Service that offers a simple mechanism to handle CORS requests
@@ -224,7 +224,7 @@ class CorsService
      *
      * @link http://www.w3.org/TR/cors/#resource-implementation
      * @param HttpResponse $response
-     * @return \Zend\Http\Headers
+     * @return \Laminas\Http\Headers
      */
     public function ensureVaryHeader(HttpResponse $response)
     {

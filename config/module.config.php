@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCors;
+namespace LmcCors;
 
 return [
     'service_manager' => [
@@ -27,5 +27,5 @@ return [
         ],
     ],
 
-    'zfr_cors' => [],
+    'lmc_cors' => [],
 ];

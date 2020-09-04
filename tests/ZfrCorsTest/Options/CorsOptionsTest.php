@@ -19,14 +19,14 @@
 namespace ZfrCorsTest\Options;
 
 use PHPUnit\Framework\TestCase as TestCase;
-use ZfrCors\Options\CorsOptions;
+use LmcCors\Options\CorsOptions;
 
 /**
- * Integration tests for {@see \ZfrCors\Service\CorsService}
+ * Integration tests for {@see \LmcCors\Service\CorsService}
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \ZfrCors\Options\CorsOptions
+ * @covers \LmcCors\Options\CorsOptions
  * @group Coverage
  */
 class CorsOptionsTest extends TestCase
