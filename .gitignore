@@ -1,0 +1,7 @@
+._*
+.~lock.*
+phpunit.xml
+tmp/
+vendor/
+build/
+/.idea/
