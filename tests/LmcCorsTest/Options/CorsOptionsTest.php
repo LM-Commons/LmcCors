@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCorsTest\Options;
+namespace LmcCorsTest\Options;
 
 use PHPUnit\Framework\TestCase as TestCase;
 use LmcCors\Options\CorsOptions;

@@ -17,10 +17,10 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace ZfrCorsTest\Util;
+namespace LmcCorsTest\Util;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\Mvc\Service\ServiceManagerConfig;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Mvc\Service\ServiceManagerConfig;
 
 /**
  * Base test case to be used when a new service manager instance is required
@@ -70,7 +70,7 @@ abstract class ServiceManagerFactory
 
         $serviceManager->setService('ApplicationConfig', $config);
 
-        /* @var $moduleManager \Zend\ModuleManager\ModuleManagerInterface */
+        /* @var $moduleManager \Laminas\ModuleManager\ModuleManagerInterface */
         $moduleManager = $serviceManager->get('ModuleManager');
 
         $moduleManager->loadModules();

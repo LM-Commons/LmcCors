@@ -17,7 +17,7 @@
  */
 
 use Laminas\Router\Http\TreeRouteStack;
-use ZfrCorsTest\Util\ServiceManagerFactory;
+use LmcCorsTest\Util\ServiceManagerFactory;
 
 ini_set('error_reporting', E_ALL);
 
@@ -54,5 +54,5 @@ unset($files, $file, $loader, $configFiles, $configFile, $config);
 
 
 if (! class_exists(TreeRouteStack::class)) {
-    class_alias(\Zend\Mvc\Router\Http\TreeRouteStack::class, TreeRouteStack::class);
+    class_alias(\Laminas\Mvc\Router\Http\TreeRouteStack::class, TreeRouteStack::class);
 }

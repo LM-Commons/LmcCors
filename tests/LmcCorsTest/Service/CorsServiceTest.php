@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCorsTest\Service;
+namespace LmcCorsTest\Service;
 
 use PHPUnit\Framework\TestCase as TestCase;
-use Zend\Http\Response as HttpResponse;
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
-use Zend\Router\Http\RouteMatch;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
+use Laminas\Router\Http\RouteMatch;
 use LmcCors\Options\CorsOptions;
 use LmcCors\Service\CorsService;
 
@@ -447,7 +447,7 @@ class CorsServiceTest extends TestCase
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.org');
 
         $response = $this->corsService->populateCorsResponse($request, $response, $routeMatch);
-        $this->assertInstanceOf(\Zend\Http\Response::class, $response);
+        $this->assertInstanceOf(\Laminas\Http\Response::class, $response);
         $this->assertEquals(
             'http://example.org',
             $response->getHeaders()->get('Access-Control-Allow-Origin')->getFieldValue()

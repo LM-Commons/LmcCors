@@ -16,26 +16,26 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCorsTest\Factory;
+namespace LmcCorsTest\Factory;
 
 use PHPUnit\Framework\TestCase as TestCase;
-use ZfrCorsTest\Util\ServiceManagerFactory;
+use LmcCorsTest\Util\ServiceManagerFactory;
 
 /**
  * Integration tests for {@see \LmcCors\Service\CorsService}
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Factory\CorsRequestListenerFactory
+ * @covers \LmcCors\Factory\CorsOptionsFactory
  * @group Coverage
  */
-class CorsRequestListenerFactoryTest extends TestCase
+class CorsOptionsFactoryTest extends TestCase
 {
-    public function testCanCreateCorsRequestListener()
+    public function testCanCreateOptions()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $listener       = $serviceManager->get('LmcCors\Mvc\CorsRequestListener');
+        $options        = $serviceManager->get('LmcCors\Options\CorsOptions');
 
-        $this->assertInstanceOf('LmcCors\Mvc\CorsRequestListener', $listener);
+        $this->assertInstanceOf('LmcCors\Options\CorsOptions', $options);
     }
 }
