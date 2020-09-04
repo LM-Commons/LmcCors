@@ -17,7 +17,7 @@
  */
 
 return [
-    'zfr_cors' => [
+    'lmc_cors' => [
 
     ],
 ];
