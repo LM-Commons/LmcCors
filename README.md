@@ -1,20 +1,21 @@
 # LmcCors
 
 > This is work in progress to port ZfcCors to Laminas.
-> Only the latest master branch will be ported.  Older tags will not be copied to this version.
+> Only the latest master branch of zfr-cors will be ported.  Older tags will not be copied to this version.
 
 
-
+<!--
 [![Build Status](https://travis-ci.org/zf-fr/zfr-cors.png?branch=master)](https://travis-ci.org/zf-fr/zfr-cors)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/zf-fr/zfr-cors/badges/quality-score.png?s=47504d5f5a04f88fb40aebbd524d9d241c2ae588)](https://scrutinizer-ci.com/g/zf-fr/zfr-cors/)
 [![Coverage Status](https://coveralls.io/repos/zf-fr/zfr-cors/badge.png?branch=master)](https://coveralls.io/r/zf-fr/zfr-cors?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/zfr/zfr-cors/v/stable.png)](https://packagist.org/packages/zfr/zfr-cors)
+-->
 
 LmcCors is a simple Laminas MVC module that helps you to deal with Cross-Origin Resource Sharing (CORS).
 
-## What is ZfrCors ?
+## What is LmcCors ?
 
-ZfrCors is a Zend Framework 2 module that allow to easily configure your ZF 2 application so that it automatically
+LmcCors is a Laminas MVC module that allow to easily configure your Laminas MVC application so that it automatically
 builds HTTP responses that follow the CORS documentation.
 
 ### Installation
@@ -22,13 +23,13 @@ builds HTTP responses that follow the CORS documentation.
 Install the module by typing (or add it to your `composer.json` file):
 
 ```sh
-$ php composer.phar require zfr/zfr-cors
+$ php composer.phar require laminas-commons/lmc-cors
 ```
 
-Then, enable it by adding "ZfrCors" in your `application.config.php` file.
+Then, enable it by adding "LmcCors" in your `application.config.php` or `modules.config.php` file.
 
-By default, ZfrCors is configured to deny every CORS requests. To change that, you need to copy
-the [`config/zfr_cors.global.php.dist`](config/zfr_cors.global.php.dist) file to your `autoload` folder
+By default, LmcCors is configured to deny every CORS requests. To change that, you need to copy
+the [`config/lmc_cors.global.php.dist`](config/lmc_cors.global.php.dist) file to your `autoload` folder
 (remove the `.dist` extension), and modify it to suit your needs.
 
 ## Documentation
@@ -50,7 +51,7 @@ You can find better documentation on how CORS works on the web:
 
 ### Event registration
 
-ZfrCors registers the `ZfrCors\Mvc\CorsRequestListener` with the `MvcEvent::EVENT_ROUTE` event, with a priority
+LmcCors registers the `LmcCors\Mvc\CorsRequestListener` with the `MvcEvent::EVENT_ROUTE` event, with a priority
 of -1. This means that this listener is executed AFTER the route has been matched.
 
 ### Configuring the module
@@ -58,7 +59,7 @@ of -1. This means that this listener is executed AFTER the route has been matche
 As by default, all the various options are set globally for all routes:
 
 - `allowed_origins`: (array) List of allowed origins. To allow any origin, you can use the wildcard (`*`) character. If
-  multiple origins are specified, ZfrCors will automatically check the `"Origin"` header's value, and only return the
+  multiple origins are specified, LmcCors will automatically check the `"Origin"` header's value, and only return the
   allowed domain (if any) in the `"Allow-Access-Control-Origin"` response header. To allow any sub-domain, you can prefix 
   the domain with the wildcard character (i.e. `*.example.com`). Please note that you don't need to
   add your host URI (so if your website is hosted as "example.com", "example.com" is automatically allowed.
@@ -78,7 +79,7 @@ If you want to configure specific routes, you can add `ZfrCors\Options\CorsOptio
 <?php
 
 return [
-    'zfr_cors' => [
+    'lmc_cors' => [
         'allowed_origins' => ['*'],
         'allowed_methods' => ['GET', 'POST', 'DELETE'],
     ],
@@ -91,7 +92,7 @@ return [
                     'defaults' => [
                         // This will replace allowed_methods configuration to only allow GET requests
                         // and only allow a specific origin instead of the wildcard origin
-                        ZfrCors\Options\CorsOptions::ROUTE_PARAM => [
+                        LmcCors\Options\CorsOptions::ROUTE_PARAM => [
                             'allowed_origins' => ['http://example.org'],
                             'allowed_methods' => ['GET'],
                         ],
@@ -104,7 +105,7 @@ return [
                     'route' => '/ajax',
                     'defaults' => [
                         // This overrides the wildcard origin
-                        ZfrCors\Options\CorsOptions::ROUTE_PARAM => [
+                        LmcCors\Options\CorsOptions::ROUTE_PARAM => [
                             'allowed_origins' => ['http://example.org'],
                         ],
                     ],
@@ -117,7 +118,7 @@ return [
                             'route' => '/blogpost',
                             'defaults' => [
                                 // This would only allow `http://example.org` to GET this route
-                                \ZfrCors\Options\CorsOptions::ROUTE_PARAM => [
+                                \LmcCors\Options\CorsOptions::ROUTE_PARAM => [
                                     'allowed_methods' => ['GET'],
                                 ],
                             ],
@@ -130,7 +131,7 @@ return [
                                     'route' => ':id',
                                     // This would only allow origin `http://example.org` to apply DELETE on this route
                                     'defaults' => [
-                                        \ZfrCors\Options\CorsOptions::ROUTE_PARAM => [
+                                        \LmcCors\Options\CorsOptions::ROUTE_PARAM => [
                                             'allowed_methods' => ['DELETE'],
                                         ],
                                     ],
@@ -147,47 +148,45 @@ return [
 
 ### Preflight request
 
-If ZfrCors detects a preflight CORS request, a new HTTP response will be created, and ZfrCors will send the appropriate
-headers according to your configuration. The response will be always sent with a 200 status code (OK).
+If LmcCors detects a preflight CORS request, a new HTTP response will be created, and LmcCors will send the appropriate
+headers according to your configuration. The response will always be sent with a 200 status code (OK).
 
 Please note that this will also prevent further MVC steps from being executed, since all subsequent MVC steps are
-skipped till `Zend\Mvc\MvcEvent::EVENT_FINISH`, which is responsible for actually sending the response.
+skipped till `Laminas\Mvc\MvcEvent::EVENT_FINISH`, which is responsible for actually sending the response.
 
 ### Actual request
 
-When an actual request is made, ZfrCors first checks it the origin is allowed. If it is not, then a new response with
+When an actual request is made, LmcCors first checks it the origin is allowed. If it is not, then a new response with
 a 403 status code (Forbidden) is created and sent.
 
 Please note that this will also prevent further MVC steps from being executed, since all subsequent MVC steps are
-skipped till `Zend\Mvc\MvcEvent::EVENT_FINISH`, which is responsible for actually sending the response.
+skipped till `Laminas\Mvc\MvcEvent::EVENT_FINISH`, which is responsible for actually sending the response.
 
-If the origin is allowed, ZfrCors will just add the appropriate headers to the request produced by `Zend\Mvc`.
+If the origin is allowed, LmcCors will just add the appropriate headers to the request produced by `Laminas\Mvc`.
 
 ### Security concerns
 
 Don't use this module to secure your application! You must use a proper authorization module, like
-[BjyAuthorize](https://github.com/bjyoungblood/BjyAuthorize), [ZfcRbac](https://github.com/ZF-Commons/ZfcRbac) or
+[BjyAuthorize](https://github.com/bjyoungblood/BjyAuthorize), [LmcRbacMvc](https://github.com/Laminas-Commons/LmcRbacMvc) or
 [SpiffyAuthorize](https://github.com/spiffyjr/spiffy-authorize).
 
-ZfrCors only allows to accept or refuse a cross-origin request.
+LmcCors only allows to accept or refuse a cross-origin request.
 
 ### Custom schemes
 
-Internally, ZfrCors uses `Zend\Uri\UriFactory` class. If you are using custom schemes (for instance if you are
+Internally, LmcCors uses `Laminas\Uri\UriFactory` class. If you are using custom schemes (for instance if you are
 testing your API with some Google Chrome extensions), you need to add support for those schemes by adding them to
-the `UriFactory` config (please [refer to the doc](http://framework.zend.com/manual/2.2/en/modules/zend.uri.html#creating-a-new-custom-class-uri)).
+the `UriFactory` config (please [refer to the doc](https://docs.laminas.dev/laminas-uri/usage/#creating-a-new-custom-class-uri)).
 
 ### Example
 To register the `chrome-extension` custom scheme in your API, simply add:
 
 ```php
-UriFactory::registerScheme('chrome-extension', 'Zend\Uri\Uri');
+use Laminas\Uri\UriFactory;
+
+UriFactory::registerScheme('chrome-extension', 'Laminas\Uri\Uri');
 ```
 
-to the `onBootstrap()` method in `module/Application/Module.php`. Do note that, if your IDE doesn't resolve this automatically, you should add the following `use` definition to the same file: 
-
-```php
-use Zend\Uri\UriFactory;
-```
+to the `onBootstrap()` method in `module/Application/Module.php`.
 
 Registering the `chrome-extension` custom scheme like this allows you to use Google Chrome extensions for testing your API.
