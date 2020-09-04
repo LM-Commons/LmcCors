@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCorsTest\Factory;
+namespace LmcCorsTest\Factory;
 
 use PHPUnit\Framework\TestCase as TestCase;
-use ZfrCorsTest\Util\ServiceManagerFactory;
+use LmcCorsTest\Util\ServiceManagerFactory;
 
 /**
  * Integration tests for {@see \LmcCors\Service\CorsService}

@@ -16,15 +16,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace ZfrCorsTest\Mvc;
+namespace LmcCorsTest\Mvc;
 
 use PHPUnit\Framework\TestCase as TestCase;
-use Zend\EventManager\EventManager;
-use Zend\Http\Request as HttpRequest;
-use Zend\Http\Response as HttpResponse;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\RouteListener;
-use Zend\Router\Http\TreeRouteStack;
+use Laminas\EventManager\EventManager;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\RouteListener;
+use Laminas\Router\Http\TreeRouteStack;
 use LmcCors\Mvc\CorsRequestListener;
 use LmcCors\Options\CorsOptions;
 use LmcCors\Service\CorsService;
@@ -64,7 +64,7 @@ class CorsRequestListenerTest extends TestCase
 
     public function testAttach()
     {
-        $eventManager = $this->getMockBuilder('Zend\EventManager\EventManagerInterface')->getMock();
+        $eventManager = $this->getMockBuilder('Laminas\EventManager\EventManagerInterface')->getMock();
 
         $eventManager
             ->expects($this->at(0))
@@ -108,7 +108,7 @@ class CorsRequestListenerTest extends TestCase
             ->setResponse($response)
             ->setRouter($router);
 
-        $this->assertInstanceOf('Zend\Http\Response', $this->corsListener->onCorsPreflight($mvcEvent));
+        $this->assertInstanceOf('Laminas\Http\Response', $this->corsListener->onCorsPreflight($mvcEvent));
     }
 
     public function testReturnNothingForNormalAuthorizedCorsRequest()
@@ -242,7 +242,7 @@ class CorsRequestListenerTest extends TestCase
         $event->setRequest($request);
 
         $shortCircuit = function ($r) {
-            $this->assertInstanceOf(\Zend\Http\Response::class, $r);
+            $this->assertInstanceOf(\Laminas\Http\Response::class, $r);
             $this->assertEquals(200, $r->getStatusCode());
             $this->assertEquals('GET', $r->getHeaders()->get('Access-Control-Allow-Methods')->getFieldValue());
             $this->assertEquals(

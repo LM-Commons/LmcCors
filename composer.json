@@ -56,7 +56,7 @@
     },
     "autoload-dev": {
         "psr-0": {
-            "ZfrCorsTest\\": "tests/"
+            "LmcCorsTest\\": "tests/"
         }
     },
     "scripts": {
