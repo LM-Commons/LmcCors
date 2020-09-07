@@ -49,12 +49,12 @@ class ModuleTest extends TestCase
     {
         $module         = new Module();
         $mvcEvent       = $this->getMockBuilder('Laminas\Mvc\MvcEvent')->getMock();
-        $application    = $this->getMockBuilder('Laminas\Mvc\Application', [], [], '', false)
+        $application    = $this->getMockBuilder('Laminas\Mvc\Application')
             ->disableOriginalConstructor()
             ->getMock();
         $eventManager   = $this->getMockBuilder('Laminas\EventManager\EventManagerInterface')->getMock();
         $serviceManager = $this->getMockBuilder('Laminas\ServiceManager\ServiceManager')->getMock();
-        $corsListener   = $this->getMockBuilder('LmcCors\Mvc\CorsRequestListener', [], [], '', false)
+        $corsListener   = $this->getMockBuilder('LmcCors\Mvc\CorsRequestListener')
             ->disableOriginalConstructor()
             ->getMock();
 
