@@ -1,8 +1,5 @@
 # LmcCors
 
-> This is work in progress to port ZfcCors to Laminas.
-> Only the latest master branch of zfr-cors will be ported.  Older tags will not be copied to this version.
-
 
 [![Build Status](https://travis-ci.com/Laminas-Commons/lmccors.svg?branch=master)](https://travis-ci.com/Laminas-Commons/lmccors)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/?branch=master)
