@@ -18,6 +18,8 @@
 
 namespace LmcCorsTest\Service;
 
+use LmcCors\Exception\DisallowedOriginException;
+use LmcCors\Exception\InvalidOriginException;
 use PHPUnit\Framework\TestCase as TestCase;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Http\Request as HttpRequest;
@@ -289,7 +291,7 @@ class CorsServiceTest extends TestCase
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://unauthorized.com');
 
-        $this->expectException(\LmcCors\Exception\DisallowedOriginException::class);
+        $this->expectException(DisallowedOriginException::class);
         $this->expectExceptionMessage('The origin "http://unauthorized.com" is not authorized');
 
         $this->corsService->populateCorsResponse($request, $response);
@@ -424,7 +426,7 @@ class CorsServiceTest extends TestCase
         $request = new HttpRequest();
         $request->setUri('https://example.com');
         $request->getHeaders()->addHeaderLine('Origin', 'file:');
-        $this->expectException(\LmcCors\Exception\InvalidOriginException::class);
+        $this->expectException(InvalidOriginException::class);
         $this->corsService->isCorsRequest($request);
     }
 
@@ -472,7 +474,7 @@ class CorsServiceTest extends TestCase
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.com');
 
-        $this->expectException(\LmcCors\Exception\DisallowedOriginException::class);
+        $this->expectException(DisallowedOriginException::class);
         $this->corsService->populateCorsResponse($request, $response, $routeMatch);
     }
 }
