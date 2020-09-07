@@ -5,12 +5,11 @@
 
 
 [![Build Status](https://travis-ci.com/Laminas-Commons/lmccors.svg?branch=master)](https://travis-ci.com/Laminas-Commons/lmccors)
-[![Code Coverage](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Laminas-Commons/LmcCors/badge.svg?branch=master)](https://coveralls.io/github/Laminas-Commons/LmcCors?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/laminas-commons/lmc-cors/v)](//packagist.org/packages/laminas-commons/lmc-cors)
 [![License](https://poser.pugx.org/laminas-commons/lmc-cors/license)](//packagist.org/packages/laminas-commons/lmc-cors)
 [![Total Downloads](https://poser.pugx.org/laminas-commons/lmc-cors/downloads)](//packagist.org/packages/laminas-commons/lmc-cors)
-<!--[![Coverage Status](https://coveralls.io/repos/zf-fr/zfr-cors/badge.png?branch=master)](https://coveralls.io/r/zf-fr/zfr-cors?branch=master)
--->
 
 LmcCors is a simple Laminas MVC module that helps you to deal with Cross-Origin Resource Sharing (CORS).
 
