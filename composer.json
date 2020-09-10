@@ -28,8 +28,8 @@
         }
     ],
     "extra": {
-        "zf": {
-            "module": "ZfrCors"
+        "laminas": {
+            "module": "LmcCors"
         }
     },
     "require": {
