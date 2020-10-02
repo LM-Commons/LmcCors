@@ -1,5 +1,5 @@
 {
-    "name": "laminas-commons/lmc-cors",
+    "name": "lm-commons/lmc-cors",
     "description": "Laminas MVC module that let you deal with CORS requests",
     "type": "library",
     "license": "MIT",
@@ -10,7 +10,7 @@
         "rest",
         "cross origin sharing resource"
     ],
-    "homepage": "https://github.com/lmainas-commons/lmc-cors",
+    "homepage": "https://github.com/lm-commons/lmc-cors",
     "authors": [
         {
             "name": "Florent Blaison",

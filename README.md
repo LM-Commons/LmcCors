@@ -1,12 +1,12 @@
 # LmcCors
 
 
-[![Build Status](https://travis-ci.com/Laminas-Commons/lmccors.svg?branch=master)](https://travis-ci.com/Laminas-Commons/lmccors)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Laminas-Commons/LmcCors/?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/Laminas-Commons/LmcCors/badge.svg?branch=master)](https://coveralls.io/github/Laminas-Commons/LmcCors?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/laminas-commons/lmc-cors/v)](//packagist.org/packages/laminas-commons/lmc-cors)
-[![License](https://poser.pugx.org/laminas-commons/lmc-cors/license)](//packagist.org/packages/laminas-commons/lmc-cors)
-[![Total Downloads](https://poser.pugx.org/laminas-commons/lmc-cors/downloads)](//packagist.org/packages/laminas-commons/lmc-cors)
+[![Build Status](https://travis-ci.com/LM-Commons/lmccors.svg?branch=master)](https://travis-ci.com/LM-Commons/lmccors)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcCors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcCors/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/LM-Commons/LmcCors/badge.svg?branch=master)](https://coveralls.io/github/LM-Commons/LmcCors?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/lm-commons/lmc-cors/v)](//packagist.org/packages/lm-commons/lmc-cors)
+[![License](https://poser.pugx.org/lm-commons/lmc-cors/license)](//packagist.org/packages/lm-commons/lmc-cors)
+[![Total Downloads](https://poser.pugx.org/lm-commons/lmc-cors/downloads)](//packagist.org/packages/lm-commons/lmc-cors)
 
 LmcCors is a simple Laminas MVC module that helps you to deal with Cross-Origin Resource Sharing (CORS).
 
@@ -20,7 +20,7 @@ builds HTTP responses that follow the CORS documentation.
 Install the module by typing (or add it to your `composer.json` file):
 
 ```sh
-$ php composer.phar require laminas-commons/lmc-cors
+$ php composer.phar require lm-commons/lmc-cors
 ```
 
 Then, enable it by adding "LmcCors" in your `application.config.php` or `modules.config.php` file.
@@ -164,7 +164,7 @@ If the origin is allowed, LmcCors will just add the appropriate headers to the r
 ### Security concerns
 
 Don't use this module to secure your application! You must use a proper authorization module, like
-[BjyAuthorize](https://github.com/bjyoungblood/BjyAuthorize), [LmcRbacMvc](https://github.com/Laminas-Commons/LmcRbacMvc) or
+[BjyAuthorize](https://github.com/bjyoungblood/BjyAuthorize), [LmcRbacMvc](https://github.com/LM-Commons/LmcRbacMvc) or
 [SpiffyAuthorize](https://github.com/spiffyjr/spiffy-authorize).
 
 LmcCors only allows to accept or refuse a cross-origin request.
