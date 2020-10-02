@@ -1,3 +1,3 @@
 # CHANGELOG
 
-For changelog, please refer to the [releases](https://github.com/Laminas-Commons/LmcCors/releases) page.
+For changelog, please refer to the [releases](https://github.com/LM-Commons/LmcCors/releases) page.
