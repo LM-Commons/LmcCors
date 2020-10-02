@@ -27,6 +27,7 @@ matrix:
       env:
         - DEPS=latest
         - CS_CHECK=true
+        - TEST_COVERAGE=true
     - php: 7.4
       env:
         - DEPS=lowest
