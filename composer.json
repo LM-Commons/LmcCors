@@ -59,6 +59,9 @@
             "LmcCorsTest\\": "tests/"
         }
     },
+    "replace": {
+        "laminas-commons/lmc-cors": "v1.0.1"
+    },
     "scripts": {
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
