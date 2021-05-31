@@ -50,12 +50,12 @@
         "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "LmcCors\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-0": {
+        "psr-4": {
             "LmcCorsTest\\": "tests/"
         }
     },
