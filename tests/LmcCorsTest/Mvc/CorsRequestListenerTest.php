@@ -67,14 +67,12 @@ class CorsRequestListenerTest extends TestCase
         $eventManager = $this->getMockBuilder('Laminas\EventManager\EventManagerInterface')->getMock();
 
         $eventManager
-            ->expects($this->at(0))
+            ->expects($this->exactly(2))
             ->method('attach')
-            ->with(MvcEvent::EVENT_ROUTE, $this->isType('callable'), $this->equalTo(2));
-        $eventManager
-            ->expects($this->at(1))
-            ->method('attach')
-            ->with(MvcEvent::EVENT_FINISH, $this->isType('callable'), $this->greaterThan(1));
-
+            ->withConsecutive(
+                [MvcEvent::EVENT_ROUTE, $this->isType('callable'), $this->equalTo(2)],
+                [MvcEvent::EVENT_FINISH, $this->isType('callable'), $this->greaterThan(1)],
+            );
         $this->corsListener->attach($eventManager);
     }
 
@@ -217,7 +215,7 @@ class CorsRequestListenerTest extends TestCase
                             'options' => [
                                 'verb' => 'get',
                                 'defaults' => [
-                                    \LmcCors\Options\CorsOptions::ROUTE_PARAM => [
+                                    CorsOptions::ROUTE_PARAM => [
                                         'allowed_origins' => ['http://example.com'],
                                         'allowed_methods' => ['GET'],
                                     ],
@@ -242,7 +240,7 @@ class CorsRequestListenerTest extends TestCase
         $event->setRequest($request);
 
         $shortCircuit = function ($r) {
-            $this->assertInstanceOf(\Laminas\Http\Response::class, $r);
+            $this->assertInstanceOf(HttpResponse::class, $r);
             $this->assertEquals(200, $r->getStatusCode());
             $this->assertEquals('GET', $r->getHeaders()->get('Access-Control-Allow-Methods')->getFieldValue());
             $this->assertEquals(
