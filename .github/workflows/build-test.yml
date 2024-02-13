@@ -1,0 +1,54 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - 'update-php'
+
+  pull_request:
+    branches:
+      - 'update-php'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        php_version: ['8.1', '8.2']
+        deps: ['lowest', 'latest']
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{matrix.php_version}}
+
+      - name: Check PHP version
+        run: php -v
+
+      - uses: actions/checkout@v3
+        name: Checkout branch
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{matrix.php_version}}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php--${{matrix.php_version}}
+
+      - name: Install/update dependencies lowest
+        if: ${{ matrix.deps }} == 'lowest'
+        run: composer update --prefer-lowest --prefer-stable --no-progress
+
+      - name: Install/update dependencies latest
+        if: ${{ matrix.deps }} == 'latest'
+        run: composer update --no-progress
+
+
+      - name: Run PHPUnit test suite
+        run: composer test
