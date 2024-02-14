@@ -11,6 +11,11 @@ jobs:
       matrix:
         php_version: ['8.1', '8.2']
         deps: ['lowest', 'latest']
+        include:
+          - code-coverage: 'yes'
+            php_version: '8.2'
+            deps: 'latest'
+
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +30,7 @@ jobs:
       - name: test deps
         run: echo ${{ matrix.deps }}
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout branch
 
       - name: Validate composer.json and composer.lock
@@ -33,7 +38,7 @@ jobs:
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{matrix.php_version}}-${{ hashFiles('**/composer.lock') }}
@@ -48,6 +53,11 @@ jobs:
         if: ${{ matrix.deps == 'latest' }}
         run: composer update --no-progress
 
+      - name: Run PHPUnit test suite with coverage
+        if: ${{ matrix.code-coverage == 'yes' }}
+        run: composer test-coverage
 
-      - name: Run PHPUnit test suite
+      - name: Run PHPUnit test suite no coverage
+        if: ${{ matrix.code-coverage <> 'yes' }}
         run: composer test
+
