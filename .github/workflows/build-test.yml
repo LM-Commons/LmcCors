@@ -58,6 +58,6 @@ jobs:
         run: composer test-coverage
 
       - name: Run PHPUnit test suite no coverage
-        if: ${{ matrix.code-coverage <> 'yes' }}
+        if: ${{ matrix.code-coverage != 'yes' }}
         run: composer test
 
