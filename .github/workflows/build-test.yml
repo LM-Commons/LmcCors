@@ -27,7 +27,7 @@ jobs:
         run: php -v
 
       - name: test deps
-        run: echo 'deps ${{ deps }}'
+        run: echo ${{ deps }}
 
       - uses: actions/checkout@v3
         name: Checkout branch
