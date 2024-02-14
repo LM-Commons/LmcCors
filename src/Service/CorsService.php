@@ -18,7 +18,8 @@
 
 namespace LmcCors\Service;
 
-use Laminas\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
+//use Laminas\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
+use Laminas\Http\Headers;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Http\Header;
 use Laminas\Uri\UriFactory;
@@ -41,7 +42,7 @@ class CorsService
     /**
      * @var CorsOptions
      */
-    protected $options;
+    protected CorsOptions $options;
 
     /**
      * @param CorsOptions $options
@@ -58,7 +59,7 @@ class CorsService
      * @param  HttpRequest $request
      * @return bool
      */
-    public function isCorsRequest(HttpRequest $request)
+    public function isCorsRequest(HttpRequest $request): bool
     {
         $headers = $request->getHeaders();
 
@@ -89,7 +90,7 @@ class CorsService
      * @param  HttpRequest $request
      * @return bool
      */
-    public function isPreflightRequest(HttpRequest $request)
+    public function isPreflightRequest(HttpRequest $request): bool
     {
         return $this->isCorsRequest($request)
             && strtoupper($request->getMethod()) === 'OPTIONS'
@@ -102,7 +103,7 @@ class CorsService
      * @param  HttpRequest  $request
      * @return HttpResponse
      */
-    public function createPreflightCorsResponse(HttpRequest $request)
+    public function createPreflightCorsResponse(HttpRequest $request): HttpResponse
     {
         $response = new HttpResponse();
         $response->setStatusCode(200);
@@ -123,22 +124,20 @@ class CorsService
     }
 
     /**
-     * Create a preflight response by adding the correspoding headers which are merged with per-route configuration
+     * Create a preflight response by adding the corresponding headers which are merged with per-route configuration
      *
      * @param HttpRequest                          $request
-     * @param RouteMatch|DeprecatedRouteMatch|null $routeMatch
+     * @param RouteMatch|null $routeMatch
      *
      * @return HttpResponse
      */
-    public function createPreflightCorsResponseWithRouteOptions(HttpRequest $request, $routeMatch = null)
+    public function createPreflightCorsResponseWithRouteOptions(HttpRequest $request, RouteMatch $routeMatch = null): HttpResponse
     {
         $options = $this->options;
-        if ($routeMatch instanceof RouteMatch || $routeMatch instanceof DeprecatedRouteMatch) {
+        if ($routeMatch instanceof RouteMatch) {
             $options->setFromArray($routeMatch->getParam(CorsOptions::ROUTE_PARAM) ?: []);
         }
-        $response = $this->createPreflightCorsResponse($request);
-
-        return $response;
+        return $this->createPreflightCorsResponse($request);
     }
 
     /**
@@ -146,13 +145,13 @@ class CorsService
      *
      * @param  HttpRequest               $request
      * @param  HttpResponse              $response
-     * @param  null|RouteMatch           $routeMatch
+     * @param RouteMatch|null $routeMatch
      * @return HttpResponse
      * @throws DisallowedOriginException If the origin is not allowed
      */
-    public function populateCorsResponse(HttpRequest $request, HttpResponse $response, $routeMatch = null)
+    public function populateCorsResponse(HttpRequest $request, HttpResponse $response, RouteMatch $routeMatch = null): HttpResponse
     {
-        if ($routeMatch instanceof RouteMatch || $routeMatch instanceof DeprecatedRouteMatch) {
+        if ($routeMatch instanceof RouteMatch) {
             $this->options->setFromArray($routeMatch->getParam(CorsOptions::ROUTE_PARAM) ?: []);
         }
 
@@ -197,7 +196,7 @@ class CorsService
      * @param  HttpRequest $request
      * @return string
      */
-    protected function getAllowedOriginValue(HttpRequest $request)
+    protected function getAllowedOriginValue(HttpRequest $request): string
     {
         $allowedOrigins = $this->options->getAllowedOrigins();
 
@@ -224,9 +223,9 @@ class CorsService
      *
      * @link http://www.w3.org/TR/cors/#resource-implementation
      * @param HttpResponse $response
-     * @return \Laminas\Http\Headers
+     * @return Headers
      */
-    public function ensureVaryHeader(HttpResponse $response)
+    public function ensureVaryHeader(HttpResponse $response): Headers
     {
         $headers = $response->getHeaders();
         // If the origin is not "*", we should add the "Origin" value to the "Vary" header

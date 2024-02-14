@@ -38,14 +38,14 @@ class CorsRequestListener extends AbstractListenerAggregate
     /**
      * @var CorsService
      */
-    protected $corsService;
+    protected CorsService $corsService;
 
     /**
      * Whether or not a preflight request was detected
      *
      * @var bool
      */
-    protected $isPreflight = false;
+    protected bool $isPreflight = false;
 
     /**
      * @param CorsService $corsService
@@ -58,7 +58,7 @@ class CorsRequestListener extends AbstractListenerAggregate
     /**
      * {@inheritDoc}
      */
-    public function attach(EventManagerInterface $events, $priority = 1)
+    public function attach(EventManagerInterface $events, $priority = 1): void
     {
         // Preflight can be handled during the route event, and should return early
         $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, [$this, 'onCorsPreflight'], 2);
@@ -106,7 +106,7 @@ class CorsRequestListener extends AbstractListenerAggregate
         $router = $event->getRouter();
 
         $requestForMatching = clone $request;
-        // Use the request method for route deteciton, which is being used during the request.
+        // Use the request method for route detection, which is being used during the request.
         $requestForMatching->setMethod($request->getHeader('Access-Control-Request-Method')->getFieldValue());
 
         $routeMatch = $router->match($requestForMatching);
@@ -119,7 +119,7 @@ class CorsRequestListener extends AbstractListenerAggregate
      *
      * @param MvcEvent $event
      */
-    public function onCorsRequest(MvcEvent $event)
+    public function onCorsRequest(MvcEvent $event): void
     {
         // Do nothing if we previously created a preflight response
         if ($this->isPreflight) {

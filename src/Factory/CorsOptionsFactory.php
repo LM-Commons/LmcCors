@@ -18,8 +18,12 @@
 
 namespace LmcCors\Factory;
 
-use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
 use LmcCors\Options\CorsOptions;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * CorsOptionsFactory
@@ -27,17 +31,21 @@ use LmcCors\Options\CorsOptions;
  * @license MIT
  * @author  Florent Blaison <florent.blaison@gmail.com>
  */
-class CorsOptionsFactory
+class CorsOptionsFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
+     * @param $requestedName
+     * @param array|null $options
      * @return CorsOptions
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): CorsOptions
     {
         /* @var $config array */
         $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config['lmc_cors']) ? $config['lmc_cors'] : [];
+        $config = $config['lmc_cors'] ?? [];
 
         return new CorsOptions($config);
     }

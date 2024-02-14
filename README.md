@@ -1,8 +1,7 @@
 # LmcCors
 
 
-[![Build Status](https://travis-ci.com/LM-Commons/lmccors.svg?branch=master)](https://travis-ci.com/LM-Commons/lmccors)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LM-Commons/LmcCors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LM-Commons/LmcCors/?branch=master)
+![Build Status](https://github.com/lm-commons/lmccors/actions/workflows/build-test.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/LM-Commons/LmcCors/badge.svg?branch=master)](https://coveralls.io/github/LM-Commons/LmcCors?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/lm-commons/lmc-cors/v)](//packagist.org/packages/lm-commons/lmc-cors)
 [![License](https://poser.pugx.org/lm-commons/lmc-cors/license)](//packagist.org/packages/lm-commons/lmc-cors)
@@ -20,10 +19,11 @@ builds HTTP responses that follow the CORS documentation.
 Install the module by typing (or add it to your `composer.json` file):
 
 ```sh
-$ php composer.phar require lm-commons/lmc-cors
+$ composer require lm-commons/lmc-cors
 ```
 
 Then, enable it by adding "LmcCors" in your `application.config.php` or `modules.config.php` file.
+Alternatively, the module will be added to the configuration during installation by the Laminas Component Installer
 
 By default, LmcCors is configured to deny every CORS requests. To change that, you need to copy
 the [`config/lmc_cors.global.php.dist`](config/lmc_cors.global.php.dist) file to your `autoload` folder
@@ -36,7 +36,7 @@ the [`config/lmc_cors.global.php.dist`](config/lmc_cors.global.php.dist) file to
 CORS is a mechanism that allows to perform cross-origin requests from your browser.
 
 For instance, let's say that your website is hosted in the domain `http://example.com`.
-By default, user agents won't be allowed to perform AJAX requests to another domain for security
+By default, user agents will not be allowed to perform AJAX requests to another domain for security
 reasons (for instance `http://funny-domain.com`).
 
 With CORS, you can allow your server to reply to such requests.
@@ -49,7 +49,7 @@ You can find better documentation on how CORS works on the web:
 ### Event registration
 
 LmcCors registers the `LmcCors\Mvc\CorsRequestListener` with the `MvcEvent::EVENT_ROUTE` event, with a priority
-of -1. This means that this listener is executed AFTER the route has been matched.
+of 2. This means that this listener is executed BEFORE the route has been matched.
 
 ### Configuring the module
 
@@ -70,7 +70,7 @@ As by default, all the various options are set globally for all routes:
   some browsers do not implement this feature correctly.
 - `allowed_credentials`: (boolean) If true, it allows the browser to send cookies along with the request.
 
-If you want to configure specific routes, you can add `ZfrCors\Options\CorsOptions::ROUTE_PARAM` to your route configuration:
+If you want to configure specific routes, you can add `LmcCors\Options\CorsOptions::ROUTE_PARAM` to your route configuration:
 
 ```php
 <?php
@@ -153,7 +153,7 @@ skipped till `Laminas\Mvc\MvcEvent::EVENT_FINISH`, which is responsible for actu
 
 ### Actual request
 
-When an actual request is made, LmcCors first checks it the origin is allowed. If it is not, then a new response with
+When an actual request is made, LmcCors first checks if the origin is allowed. If it is not, then a new response with
 a 403 status code (Forbidden) is created and sent.
 
 Please note that this will also prevent further MVC steps from being executed, since all subsequent MVC steps are

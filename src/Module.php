@@ -21,6 +21,8 @@ namespace LmcCors;
 use Laminas\EventManager\EventInterface;
 use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\Mvc\Application;
+use LmcCors\Mvc\CorsRequestListener;
 
 /**
  * @licence MIT
@@ -32,14 +34,14 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function onBootstrap(EventInterface $event)
+    public function onBootstrap(EventInterface $e): void
     {
-        /* @var $application \Laminas\Mvc\Application */
-        $application     = $event->getTarget();
+        /* @var $application Application */
+        $application     = $e->getTarget();
         $serviceManager  = $application->getServiceManager();
         $eventManager    = $application->getEventManager();
 
-        /** @var \LmcCors\Mvc\CorsRequestListener $listener */
+        /** @var CorsRequestListener $listener */
         $listener = $serviceManager->get('LmcCors\Mvc\CorsRequestListener');
         $listener->attach($eventManager);
     }

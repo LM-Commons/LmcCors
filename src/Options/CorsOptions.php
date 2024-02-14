@@ -35,48 +35,48 @@ class CorsOptions extends AbstractOptions
      *
      * @var array
      */
-    protected $allowedOrigins = [];
+    protected array $allowedOrigins = [];
 
     /**
      * Set the list of HTTP verbs.
      *
      * @var array
      */
-    protected $allowedMethods = [];
+    protected array $allowedMethods = [];
 
     /**
      * Set the list of headers.
      *
      * @var array
      */
-    protected $allowedHeaders = [];
+    protected array $allowedHeaders = [];
 
     /**
      * Set the max age of the authorize request in seconds.
      *
      * @var int
      */
-    protected $maxAge = 0;
+    protected int $maxAge = 0;
 
     /**
      * Set the list of exposed headers.
      *
      * @var array
      */
-    protected $exposedHeaders = [];
+    protected array $exposedHeaders = [];
 
     /**
      * Allow CORS request with credential.
      *
      * @var bool
      */
-    protected $allowedCredentials = false;
+    protected bool $allowedCredentials = false;
 
     /**
      * @param  array $allowedOrigins
      * @return void
      */
-    public function setAllowedOrigins(array $allowedOrigins)
+    public function setAllowedOrigins(array $allowedOrigins): void
     {
         $this->allowedOrigins = $allowedOrigins;
     }
@@ -84,7 +84,7 @@ class CorsOptions extends AbstractOptions
     /**
      * @return array
      */
-    public function getAllowedOrigins()
+    public function getAllowedOrigins(): array
     {
         return $this->allowedOrigins;
     }
@@ -93,7 +93,7 @@ class CorsOptions extends AbstractOptions
      * @param  array $allowedMethods
      * @return void
      */
-    public function setAllowedMethods(array $allowedMethods)
+    public function setAllowedMethods(array $allowedMethods): void
     {
         foreach ($allowedMethods as &$allowedMethod) {
             $allowedMethod = strtoupper($allowedMethod);
@@ -105,7 +105,7 @@ class CorsOptions extends AbstractOptions
     /**
      * @return array
      */
-    public function getAllowedMethods()
+    public function getAllowedMethods(): array
     {
         return $this->allowedMethods;
     }
@@ -114,7 +114,7 @@ class CorsOptions extends AbstractOptions
      * @param  array $allowedHeaders
      * @return void
      */
-    public function setAllowedHeaders(array $allowedHeaders)
+    public function setAllowedHeaders(array $allowedHeaders): void
     {
         $this->allowedHeaders = $allowedHeaders;
     }
@@ -122,16 +122,16 @@ class CorsOptions extends AbstractOptions
     /**
      * @return array
      */
-    public function getAllowedHeaders()
+    public function getAllowedHeaders(): array
     {
         return $this->allowedHeaders;
     }
 
     /**
-     * @param  int  $maxAge
+     * @param int $maxAge
      * @return void
      */
-    public function setMaxAge($maxAge)
+    public function setMaxAge(int $maxAge): void
     {
         $this->maxAge = (int) $maxAge;
     }
@@ -139,7 +139,7 @@ class CorsOptions extends AbstractOptions
     /**
      * @return int
      */
-    public function getMaxAge()
+    public function getMaxAge(): int
     {
         return $this->maxAge;
     }
@@ -148,7 +148,7 @@ class CorsOptions extends AbstractOptions
      * @param  array $exposedHeaders
      * @return void
      */
-    public function setExposedHeaders(array $exposedHeaders)
+    public function setExposedHeaders(array $exposedHeaders): void
     {
         $this->exposedHeaders = $exposedHeaders;
     }
@@ -156,16 +156,16 @@ class CorsOptions extends AbstractOptions
     /**
      * @return array
      */
-    public function getExposedHeaders()
+    public function getExposedHeaders(): array
     {
         return $this->exposedHeaders;
     }
 
     /**
-     * @param  bool $allowedCredentials
+     * @param bool $allowedCredentials
      * @return void
      */
-    public function setAllowedCredentials($allowedCredentials)
+    public function setAllowedCredentials(bool $allowedCredentials): void
     {
         $this->allowedCredentials = (bool) $allowedCredentials;
     }
@@ -173,7 +173,7 @@ class CorsOptions extends AbstractOptions
     /**
      * @return boolean
      */
-    public function getAllowedCredentials()
+    public function getAllowedCredentials(): bool
     {
         return $this->allowedCredentials;
     }

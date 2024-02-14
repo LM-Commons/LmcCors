@@ -20,11 +20,10 @@ namespace LmcCorsTest\Service;
 
 use LmcCors\Exception\DisallowedOriginException;
 use LmcCors\Exception\InvalidOriginException;
-use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Mvc\Router\Http\RouteMatch as DeprecatedRouteMatch;
 use Laminas\Router\Http\RouteMatch;
 use LmcCors\Options\CorsOptions;
 use LmcCors\Service\CorsService;
@@ -42,27 +41,27 @@ class CorsServiceTest extends TestCase
     /**
      * @var CorsService
      */
-    protected $corsService;
+    protected CorsService $corsService;
 
     /**
      * @var HttpResponse
      */
-    protected $response;
+    protected HttpResponse $response;
 
     /**
      * @var HttpRequest
      */
-    protected $request;
+    protected HttpRequest $request;
 
     /**
      * @var MvcEvent
      */
-    protected $event;
+    protected MvcEvent $event;
 
     /**
      * @var CorsOptions
      */
-    protected $corsOptions;
+    protected CorsOptions $corsOptions;
 
     /**
      * Set up
@@ -92,7 +91,7 @@ class CorsServiceTest extends TestCase
         $this->assertFalse($this->corsService->isCorsRequest($request));
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.com');
-        $this->assertEquals(true, $this->corsService->isCorsRequest($request));
+        $this->assertTrue($this->corsService->isCorsRequest($request));
     }
 
     public function testIsNotCorsRequestIfNotACrossRequest()
@@ -101,7 +100,7 @@ class CorsServiceTest extends TestCase
         $request->setUri('http://example.com');
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.com');
-        $this->assertEquals(false, $this->corsService->isCorsRequest($request));
+        $this->assertFalse($this->corsService->isCorsRequest($request));
     }
 
     public function testCanDetectPreflightRequest()
@@ -357,7 +356,7 @@ class CorsServiceTest extends TestCase
 
     public function testCanHandleUnconfiguredRouteMatch()
     {
-        $routeMatch = class_exists(DeprecatedRouteMatch::class) ? new DeprecatedRouteMatch([]) : new RouteMatch([]);
+        $routeMatch = new RouteMatch([]);
 
         $request = new HttpRequest();
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.com');
@@ -393,8 +392,7 @@ class CorsServiceTest extends TestCase
             ],
         ];
 
-        $routeMatch = class_exists(DeprecatedRouteMatch::class) ? new DeprecatedRouteMatch($routeMatchParameters) :
-            new RouteMatch($routeMatchParameters);
+        $routeMatch = new RouteMatch($routeMatchParameters);
 
         $request = new HttpRequest();
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.org');
@@ -443,8 +441,7 @@ class CorsServiceTest extends TestCase
             ],
         ];
 
-        $routeMatch = class_exists(DeprecatedRouteMatch::class) ? new DeprecatedRouteMatch($routeMatchParameters) :
-            new RouteMatch($routeMatchParameters);
+        $routeMatch = new RouteMatch($routeMatchParameters);
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.org');
 
@@ -469,8 +466,7 @@ class CorsServiceTest extends TestCase
             ],
         ];
 
-        $routeMatch = class_exists(DeprecatedRouteMatch::class) ? new DeprecatedRouteMatch($routeMatchParameters) :
-            new RouteMatch($routeMatchParameters);
+        $routeMatch = new RouteMatch($routeMatchParameters);
 
         $request->getHeaders()->addHeaderLine('Origin', 'http://example.com');
 

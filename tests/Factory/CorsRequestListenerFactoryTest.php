@@ -18,7 +18,8 @@
 
 namespace LmcCorsTest\Factory;
 
-use PHPUnit\Framework\TestCase as TestCase;
+use LmcCors\Mvc\CorsRequestListener;
+use PHPUnit\Framework\TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
 
 /**
@@ -34,8 +35,8 @@ class CorsRequestListenerFactoryTest extends TestCase
     public function testCanCreateCorsRequestListener()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $listener       = $serviceManager->get('LmcCors\Mvc\CorsRequestListener');
+        $listener       = $serviceManager->get(CorsRequestListener::class);
 
-        $this->assertInstanceOf('LmcCors\Mvc\CorsRequestListener', $listener);
+        $this->assertInstanceOf(CorsRequestListener::class, $listener);
     }
 }

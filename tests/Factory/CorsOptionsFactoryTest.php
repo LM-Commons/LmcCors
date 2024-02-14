@@ -18,8 +18,11 @@
 
 namespace LmcCorsTest\Factory;
 
-use PHPUnit\Framework\TestCase as TestCase;
+use LmcCors\Options\CorsOptions;
+use PHPUnit\Framework\TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Integration tests for {@see \LmcCors\Service\CorsService}
@@ -31,11 +34,16 @@ use LmcCorsTest\Util\ServiceManagerFactory;
  */
 class CorsOptionsFactoryTest extends TestCase
 {
-    public function testCanCreateOptions()
+    /**
+     * @return void
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function testCanCreateOptions(): void
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $options        = $serviceManager->get('LmcCors\Options\CorsOptions');
+        $options        = $serviceManager->get(CorsOptions::class);
 
-        $this->assertInstanceOf('LmcCors\Options\CorsOptions', $options);
+        $this->assertInstanceOf(CorsOptions::class, $options);
     }
 }
