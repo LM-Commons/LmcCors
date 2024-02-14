@@ -2,12 +2,8 @@ name: Build and test
 
 on:
   push:
-    branches:
-      - 'update-php'
 
   pull_request:
-    branches:
-      - 'update-php'
 
 jobs:
   build:
