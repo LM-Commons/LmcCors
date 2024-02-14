@@ -45,11 +45,11 @@ jobs:
             ${{ runner.os }}-php--${{matrix.php_version}}
 
       - name: Install/update dependencies lowest
-        if: ${{ matrix.deps }} == 'lowest'
+        if: ${{ matrix.deps == 'lowest' }}
         run: composer update --prefer-lowest --prefer-stable --no-progress
 
       - name: Install/update dependencies latest
-        if: ${{ matrix.deps }} == 'latest'
+        if: ${{ matrix.deps == 'latest' }}
         run: composer update --no-progress
 
 
