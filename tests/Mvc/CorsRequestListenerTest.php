@@ -18,7 +18,7 @@
 
 namespace LmcCorsTest\Mvc;
 
-use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Laminas\EventManager\EventManager;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Http\Response as HttpResponse;
@@ -43,17 +43,17 @@ class CorsRequestListenerTest extends TestCase
     /**
      * @var CorsService
      */
-    protected $corsService;
+    protected CorsService $corsService;
 
     /**
      * @var CorsOptions
      */
-    protected $corsOptions;
+    protected CorsOptions $corsOptions;
 
     /**
      * @var CorsRequestListener
      */
-    protected $corsListener;
+    protected CorsRequestListener $corsListener;
 
     public function setUp(): void
     {
@@ -66,13 +66,16 @@ class CorsRequestListenerTest extends TestCase
     {
         $eventManager = $this->getMockBuilder('Laminas\EventManager\EventManagerInterface')->getMock();
 
+        $matcher = $this->exactly(2);
         $eventManager
-            ->expects($this->exactly(2))
+            ->expects($matcher)
             ->method('attach')
-            ->withConsecutive(
-                [MvcEvent::EVENT_ROUTE, $this->isType('callable'), $this->equalTo(2)],
-                [MvcEvent::EVENT_FINISH, $this->isType('callable'), $this->greaterThan(1)],
-            );
+            ->willReturnCallback(function (string $event, callable $callback, int $priority) use ($matcher) {
+                match ($matcher->getInvocationCount()) {
+                    1 => $this->assertEquals(MvcEvent::EVENT_ROUTE, $event),
+                    2 => $this->assertEquals(MvcEvent::EVENT_FINISH, $event),
+                };
+            });
         $this->corsListener->attach($eventManager);
     }
 

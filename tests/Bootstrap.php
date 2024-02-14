@@ -51,8 +51,3 @@ foreach ($configFiles as $configFile) {
 
 ServiceManagerFactory::setApplicationConfig($config);
 unset($files, $file, $loader, $configFiles, $configFile, $config);
-
-
-if (! class_exists(TreeRouteStack::class)) {
-    class_alias(\Laminas\Mvc\Router\Http\TreeRouteStack::class, TreeRouteStack::class);
-}

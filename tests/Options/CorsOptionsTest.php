@@ -18,7 +18,7 @@
 
 namespace LmcCorsTest\Options;
 
-use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use LmcCors\Options\CorsOptions;
 
 /**

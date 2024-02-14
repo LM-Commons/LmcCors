@@ -18,9 +18,12 @@
 
 namespace LmcCors\Factory;
 
-use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
 use LmcCors\Mvc\CorsRequestListener;
 use LmcCors\Service\CorsService;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * CorsRequestListenerFactory
@@ -28,17 +31,20 @@ use LmcCors\Service\CorsService;
  * @license MIT
  * @author  Florent Blaison <florent.blaison@gmail.com>
  */
-class CorsRequestListenerFactory
+class CorsRequestListenerFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
-     *
+     * @param ContainerInterface $container
+     * @param $requestedName
+     * @param $options
      * @return CorsRequestListener
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, $options = null): CorsRequestListener
     {
         /* @var $corsService CorsService */
-        $corsService = $container->get('LmcCors\Service\CorsService');
+        $corsService = $container->get(CorsService::class);
 
         return new CorsRequestListener($corsService);
     }

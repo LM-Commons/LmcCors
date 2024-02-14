@@ -19,8 +19,11 @@
 
 namespace LmcCorsTest\Util;
 
+use Laminas\ModuleManager\ModuleManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Mvc\Service\ServiceManagerConfig;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Base test case to be used when a new service manager instance is required
@@ -35,13 +38,14 @@ abstract class ServiceManagerFactory
     /**
      * @var array
      */
-    private static $config = [];
+    private static array $config = [];
 
     /**
      * @static
      * @param array $config
+     * @return void
      */
-    public static function setApplicationConfig(array $config)
+    public static function setApplicationConfig(array $config): void
     {
         static::$config = $config;
     }
@@ -50,27 +54,29 @@ abstract class ServiceManagerFactory
      * @static
      * @return array
      */
-    public static function getApplicationConfig()
+    public static function getApplicationConfig(): array
     {
         return static::$config;
     }
 
     /**
-     * @param  array|null     $config
+     * @param array|null $config
      * @return ServiceManager
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public static function getServiceManager(array $config = null)
+    public static function getServiceManager(array $config = null): ServiceManager
     {
         $config = $config ?: static::getApplicationConfig();
         $serviceManager = new ServiceManager();
         $serviceManagerConfig = new ServiceManagerConfig(
-            isset($config['service_manager']) ? $config['service_manager'] : []
+            $config['service_manager'] ?? []
         );
         $serviceManagerConfig->configureServiceManager($serviceManager);
 
         $serviceManager->setService('ApplicationConfig', $config);
 
-        /* @var $moduleManager \Laminas\ModuleManager\ModuleManagerInterface */
+        /* @var $moduleManager ModuleManagerInterface */
         $moduleManager = $serviceManager->get('ModuleManager');
 
         $moduleManager->loadModules();

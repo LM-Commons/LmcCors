@@ -18,6 +18,7 @@
 
 namespace LmcCorsTest\Factory;
 
+use LmcCors\Service\CorsService;
 use PHPUnit\Framework\TestCase as TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
 
@@ -34,8 +35,8 @@ class CorsServiceFactoryTest extends TestCase
     public function testCanCreateCorsService()
     {
         $serviceManager = ServiceManagerFactory::getServiceManager();
-        $service        = $serviceManager->get('LmcCors\Service\CorsService');
+        $service        = $serviceManager->get(CorsService::class);
 
-        $this->assertInstanceOf('LmcCors\Service\CorsService', $service);
+        $this->assertInstanceOf(CorsService::class, $service);
     }
 }
