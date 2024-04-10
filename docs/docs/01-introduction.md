@@ -21,4 +21,4 @@ You can find better documentation on how CORS works on the web:
 ## Support
 
 - File issues at https://github.com/LM-Commons/LmcCors/issues.
-- Ask questions in the [LM-Commons gitter](https://gitter.im/Lm-Commons/community) chat.
+- Ask questions in the [LM-Commons slack](https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ) chat.
