@@ -1,6 +1,6 @@
-# LmcCors Documentation Website
+# Documentation Website
 
-The LmcCors Documentation Website is built using [Docusaurus](https://docusaurus.io/).
+The Documentation Website is built using [Docusaurus](https://docusaurus.io/).
 
 If you want to make a contribution to the documentation, please follow these
 instructions:
@@ -17,7 +17,7 @@ This is not a tutorial on how to use Docusaurus. Please refer to Docusaurus docu
 
 ### Installation
 
-On your local fork of the LmcCors Documentation, use `yarn` to install
+On your local fork of the Documentation, use `yarn` to install
 the Docusaurus dependencies.
 
 ```
@@ -38,14 +38,14 @@ To test locally your changes, run:
 $ yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live 
+This command starts a local development server and opens up a browser window. Most changes are reflected live
 without having to restart the server.
 
 ## Test builds
 
 A GitHub action is define to test builds. It will run on push to your fork.
 
-You may have to enable workflows on you fork before they are run.
+You may have to enable workflows on your fork before they are run.
 
 ## Submit changes
 
