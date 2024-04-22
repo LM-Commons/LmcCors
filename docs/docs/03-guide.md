@@ -24,7 +24,7 @@ As by default, all the various options are set globally for all routes:
   some browsers do not implement this feature correctly.
 - `allowed_credentials`: (boolean) If true, it allows the browser to send cookies along with the request.
 
-If you want to configure specific routes, you can add `ZfrCors\Options\CorsOptions::ROUTE_PARAM` to your route configuration:
+If you want to configure specific routes, you can add `LmcCors\Options\CorsOptions::ROUTE_PARAM` to your route configuration:
 
 ```php
 <?php
