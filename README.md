@@ -6,6 +6,8 @@
 [![Latest Stable Version](https://poser.pugx.org/lm-commons/lmc-cors/v)](//packagist.org/packages/lm-commons/lmc-cors)
 [![License](https://poser.pugx.org/lm-commons/lmc-cors/license)](//packagist.org/packages/lm-commons/lmc-cors)
 [![Total Downloads](https://poser.pugx.org/lm-commons/lmc-cors/downloads)](//packagist.org/packages/lm-commons/lmc-cors)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Flm-commons%2Flmccors%2Fproperties%2Fvalues&query=%24%5B%3A1%5D.value&label=Maintenance%20Status)
+[![Static Badge](https://img.shields.io/badge/Chat_on-Slack-blue)](https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ)
 
 LmcCors is a simple Laminas MVC module that helps you to deal with Cross-Origin Resource Sharing (CORS).
 
