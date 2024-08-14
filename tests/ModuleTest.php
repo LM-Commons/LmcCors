@@ -18,6 +18,7 @@
 
 namespace LmcCorsTest;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use LmcCors\Module;
 
@@ -29,11 +30,9 @@ use LmcCors\Module;
  *
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Module')]
 class ModuleTest extends TestCase
 {
-    /**
-     * @covers \LmcCors\Module::getConfig
-     */
     public function testGetConfig()
     {
         $module = new Module();
@@ -42,9 +41,6 @@ class ModuleTest extends TestCase
         $this->assertSame($module->getConfig(), unserialize(serialize($module->getConfig())), 'Config is serializable');
     }
 
-    /**
-     * @covers \LmcCors\Module::onBootstrap
-     */
     public function testAssertListenerIsCorrectlyRegistered()
     {
         $module         = new Module();
@@ -58,14 +54,14 @@ class ModuleTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mvcEvent->expects($this->any())->method('getTarget')->will($this->returnValue($application));
-        $application->expects($this->any())->method('getEventManager')->will($this->returnValue($eventManager));
-        $application->expects($this->any())->method('getServiceManager')->will($this->returnValue($serviceManager));
+        $mvcEvent->expects($this->any())->method('getTarget')->willReturn($application);
+        $application->expects($this->any())->method('getEventManager')->willReturn($eventManager);
+        $application->expects($this->any())->method('getServiceManager')->willReturn($serviceManager);
         $serviceManager
             ->expects($this->any())
             ->method('get')
             ->with('LmcCors\Mvc\CorsRequestListener')
-            ->will($this->returnValue($corsListener));
+            ->willReturn($corsListener);
 
         $corsListener->expects($this->once())->method('attach')->with($eventManager);
 

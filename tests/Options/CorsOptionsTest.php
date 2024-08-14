@@ -18,6 +18,7 @@
 
 namespace LmcCorsTest\Options;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use LmcCors\Options\CorsOptions;
 
@@ -26,9 +27,9 @@ use LmcCors\Options\CorsOptions;
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Options\CorsOptions
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Options\CorsOptions')]
 class CorsOptionsTest extends TestCase
 {
     public function testCorsOptionsAreSecuredByDefault()

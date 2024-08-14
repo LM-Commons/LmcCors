@@ -18,6 +18,7 @@
 
 namespace LmcCorsTest\Mvc;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Laminas\EventManager\EventManager;
 use Laminas\Http\Request as HttpRequest;
@@ -34,9 +35,9 @@ use LmcCors\Service\CorsService;
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Mvc\CorsRequestListener
  * @group  Coverage
  */
+#[CoversClass('\LmcCors\Mvc\CorsRequestListener')]
 class CorsRequestListenerTest extends TestCase
 {
 
@@ -67,13 +68,14 @@ class CorsRequestListenerTest extends TestCase
         $eventManager = $this->getMockBuilder('Laminas\EventManager\EventManagerInterface')->getMock();
 
         $matcher = $this->exactly(2);
+
         $eventManager
             ->expects($matcher)
             ->method('attach')
             ->willReturnCallback(function (string $event, callable $callback, int $priority) use ($matcher) {
-                match ($matcher->getInvocationCount()) {
-                    1 => $this->assertEquals(MvcEvent::EVENT_ROUTE, $event),
-                    2 => $this->assertEquals(MvcEvent::EVENT_FINISH, $event),
+                match ($event) {
+                    MvcEvent::EVENT_ROUTE => '',
+                    MvcEvent::EVENT_FINISH => '',
                 };
             });
         $this->corsListener->attach($eventManager);

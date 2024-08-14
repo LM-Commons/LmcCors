@@ -19,6 +19,7 @@
 namespace LmcCorsTest\Factory;
 
 use LmcCors\Service\CorsService;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase as TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
 
@@ -27,9 +28,9 @@ use LmcCorsTest\Util\ServiceManagerFactory;
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Factory\CorsServiceFactory
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Factory\CorsServiceFactory')]
 class CorsServiceFactoryTest extends TestCase
 {
     public function testCanCreateCorsService()

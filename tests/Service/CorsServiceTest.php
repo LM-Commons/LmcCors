@@ -20,6 +20,7 @@ namespace LmcCorsTest\Service;
 
 use LmcCors\Exception\DisallowedOriginException;
 use LmcCors\Exception\InvalidOriginException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Http\Request as HttpRequest;
@@ -33,9 +34,9 @@ use LmcCors\Service\CorsService;
  *
  * @author Florent Blaison <florent.blaison@gmail.com>
  *
- * @covers \LmcCors\Service\CorsService
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Service\CorsService')]
 class CorsServiceTest extends TestCase
 {
     /**
