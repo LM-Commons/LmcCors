@@ -1,7 +1,8 @@
-name: Build
+name: Continuous Integration
 
 on:
   push:
+    # Avoid running tests on changes to documentation
     paths-ignore:
       - 'docs/**'
   pull_request:
@@ -12,12 +13,12 @@ jobs:
   build:
     strategy:
       matrix:
-        php_version: ['8.1', '8.2']
-        deps: ['lowest', 'latest']
+        php_version: ['8.1', '8.2', '8.3']
+        deps: ['--prefer-lowest', '--prefer-latest']
         include:
           - code-coverage: 'yes'
             php_version: '8.2'
-            deps: 'latest'
+            deps: ''
 
     runs-on: ubuntu-latest
 
@@ -52,9 +53,8 @@ jobs:
         if: ${{ matrix.deps == 'lowest' }}
         run: composer update --prefer-lowest --prefer-stable --no-progress
 
-      - name: Install/update dependencies latest
-        if: ${{ matrix.deps == 'latest' }}
-        run: composer update --no-progress
+      - name: Install/update dependencies
+        run: composer update ${{matrix.deps}}
 
       - name: Run PHPUnit test suite with coverage
         if: ${{ matrix.code-coverage == 'yes' }}
@@ -63,4 +63,8 @@ jobs:
       - name: Run PHPUnit test suite no coverage
         if: ${{ matrix.code-coverage != 'yes' }}
         run: composer test
+
+      - name: Upload coverage results to Coverall
+        if: ${{ matrix.code-coverage == 'yes' }}
+        uses: coverallsapp/github-action@v2
 
