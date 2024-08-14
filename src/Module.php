@@ -49,8 +49,13 @@ class Module implements BootstrapListenerInterface, ConfigProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfig()
+    public function getConfig(): array
     {
-        return include __DIR__ . '/../config/module.config.php';
+        $configProvider = new ConfigProvider();
+
+        return [
+            'service_manager' => $configProvider->getDependencyConfig(),
+            'lmc_cors' => $configProvider->getModuleConfig(),
+        ];
     }
 }

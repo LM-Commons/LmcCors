@@ -29,7 +29,8 @@
     ],
     "extra": {
         "laminas": {
-            "module": "LmcCors"
+            "module": "LmcCors",
+            "config-provider": "LmcCors\\ConfigProvider"
         }
     },
     "require": {
