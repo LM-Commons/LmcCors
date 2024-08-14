@@ -67,7 +67,7 @@
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "test": "phpunit",
-        "test-coverage": "phpunit -- colors=always --coverage-clover build/logs/clover.xml",
+        "test-coverage": "phpunit --colors=always --coverage-clover build/logs/clover.xml",
         "test-coverage-html": "phpunit --colors=always --coverage-html build/html",
         "upload-coverage": "php-coveralls -v"
     },
