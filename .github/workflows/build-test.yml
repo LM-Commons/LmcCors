@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         php_version: ['8.1', '8.2', '8.3']
-        deps: ['--prefer-lowest', '--prefer-latest']
+        deps: ['--prefer-lowest', '--prefer-dist']
         include:
           - code-coverage: 'yes'
             php_version: '8.2'
@@ -48,10 +48,6 @@ jobs:
           key: ${{ runner.os }}-php--${{matrix.php_version}}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php--${{matrix.php_version}}
-
-      - name: Install/update dependencies lowest
-        if: ${{ matrix.deps == 'lowest' }}
-        run: composer update --prefer-lowest --prefer-stable --no-progress
 
       - name: Install/update dependencies
         run: composer update ${{matrix.deps}}
