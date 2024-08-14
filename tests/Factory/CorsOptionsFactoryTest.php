@@ -19,6 +19,7 @@
 namespace LmcCorsTest\Factory;
 
 use LmcCors\Options\CorsOptions;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
 use Psr\Container\ContainerExceptionInterface;
@@ -29,9 +30,9 @@ use Psr\Container\NotFoundExceptionInterface;
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Factory\CorsOptionsFactory
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Factory\CorsOptionsFactory')]
 class CorsOptionsFactoryTest extends TestCase
 {
     /**

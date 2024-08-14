@@ -19,6 +19,7 @@
 namespace LmcCorsTest\Factory;
 
 use LmcCors\Mvc\CorsRequestListener;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use LmcCorsTest\Util\ServiceManagerFactory;
 
@@ -27,9 +28,9 @@ use LmcCorsTest\Util\ServiceManagerFactory;
  *
  * @author Michaël Gallego <mic.gallego@gmail.com>
  *
- * @covers \LmcCors\Factory\CorsRequestListenerFactory
  * @group Coverage
  */
+#[CoversClass('\LmcCors\Factory\CorsRequestListenerFactory')]
 class CorsRequestListenerFactoryTest extends TestCase
 {
     public function testCanCreateCorsRequestListener()
