@@ -6,4 +6,4 @@ vendor/
 build/
 /.idea/
 .phpunit*
-/composer.lock
+#/composer.lock
