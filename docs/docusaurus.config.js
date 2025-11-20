@@ -66,6 +66,14 @@ themeConfig:
     ({
       // Replace with your project's social card
         image: 'img/LMC-social-card.png',
+
+        announcementBar: {
+            id: 'mvc-maintenance-only',
+            content: "<h1 style='font-size: 120%'><strong>LmcCors is now Maintenance-only. <a href='https://lm-commons.github.io/blog/MVC-maintenance-only'>Details</a> </strong></h1>",
+            isCloseable: false,
+            backgroundColor: 'lightyellow'
+        },
+
         navbar: {
             title: 'LmcCors',
             logo: {
