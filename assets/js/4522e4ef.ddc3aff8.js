@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocs=globalThis.webpackChunkdocs||[]).push([[504],{7471:l=>{l.exports=JSON.parse('{"tags":[{"label":"laminas","permalink":"/LmcCors/blog/tags/laminas","count":1},{"label":"PHP","permalink":"/LmcCors/blog/tags/php","count":1},{"label":"lmccors","permalink":"/LmcCors/blog/tags/lmccors","count":1}]}')}}]);
