@@ -25,7 +25,6 @@ const config = {
     trailingSlash: false,
 
     onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -33,6 +32,12 @@ const config = {
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],
+    },
+
+    markdown: {
+        hooks: {
+            onBrokenMarkdownLinks: 'warn',
+        }
     },
 
     presets: [
@@ -53,6 +58,7 @@ const config = {
               // Remove this to remove the "edit this page" links.
                 editUrl:
                 'https://github.com/lm-commons/lmccors/tree/master/docs/',
+                onUntruncatedBlogPosts: 'ignore'
             },
             theme: {
                 customCss: './src/css/custom.css',
@@ -107,8 +113,8 @@ themeConfig:
                 title: 'Community',
                 items: [
                 {
-                    label: 'Slack',
-                    href: 'https://join.slack.com/t/lm-commons/shared_invite/zt-2gankt2wj-FTS45hp1W~JEj1tWvDsUHQ',
+                    label: 'Discord',
+                    href: 'https://discord.gg/nAAu7AhR',
                 },
                 ],
             },
