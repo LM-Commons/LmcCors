@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
+  <file src="src/ConfigProvider.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigProvider]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/DisallowedOriginException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DisallowedOriginException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/InvalidOriginException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidOriginException]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Factory/CorsOptionsFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsOptionsFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): CorsOptions]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$config]]></code>
     </MixedArgument>
@@ -8,11 +29,42 @@
       <code><![CDATA[$config]]></code>
     </MixedAssignment>
   </file>
+  <file src="src/Factory/CorsRequestListenerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsRequestListenerFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): CorsRequestListener]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Factory/CorsServiceFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsServiceFactory]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): CorsService]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Module]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getConfig(): array]]></code>
+      <code><![CDATA[public function onBootstrap(EventInterface $e): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="src/Mvc/CorsRequestListener.php">
     <ArgumentTypeCoercion>
       <code><![CDATA[$event->getRouteMatch()]]></code>
       <code><![CDATA[$routeMatch]]></code>
     </ArgumentTypeCoercion>
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsRequestListener]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function attach(EventManagerInterface $events, $priority = 1): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$request->getHeader('Access-Control-Request-Method')->getFieldValue()]]></code>
     </MixedArgument>
@@ -24,6 +76,9 @@
     </PossiblyUndefinedMethod>
   </file>
   <file src="src/Options/CorsOptions.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsOptions]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$allowedMethod]]></code>
     </MixedArgument>
@@ -35,6 +90,9 @@
     </RedundantCast>
   </file>
   <file src="src/Service/CorsService.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsService]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[$this->options->getMaxAge()]]></code>
       <code><![CDATA[0]]></code>
@@ -56,9 +114,6 @@
       <code><![CDATA[$origin]]></code>
       <code><![CDATA[$originHeader]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[string]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$origin]]></code>
       <code><![CDATA[$origin]]></code>
@@ -96,6 +151,9 @@
     </PossiblyUndefinedGlobalVariable>
   </file>
   <file src="test/ConfigProviderTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ConfigProviderTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testProviderExpectedConfiguration]]></code>
     </MissingReturnType>
@@ -103,13 +161,34 @@
       <code><![CDATA[$config['dependencies']]]></code>
     </MixedArgument>
   </file>
+  <file src="test/Factory/CorsOptionsFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsOptionsFactoryTest]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="test/Factory/CorsRequestListenerFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsRequestListenerFactoryTest]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="test/Factory/CorsServiceFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsServiceFactoryTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="test/ModuleTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleTest]]></code>
+    </ClassMustBeFinal>
     <MissingReturnType>
       <code><![CDATA[testAssertListenerIsCorrectlyRegistered]]></code>
       <code><![CDATA[testGetConfig]]></code>
     </MissingReturnType>
   </file>
   <file src="test/Mvc/CorsRequestListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsRequestListenerTest]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[$router]]></code>
       <code><![CDATA[$router]]></code>
@@ -122,6 +201,9 @@
     <MissingClosureReturnType>
       <code><![CDATA[function ($r) {]]></code>
     </MissingClosureReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <PossiblyInvalidMethodCall>
       <code><![CDATA[addHeaderLine]]></code>
       <code><![CDATA[addHeaderLine]]></code>
@@ -154,7 +236,18 @@
       <code><![CDATA[$priority]]></code>
     </UnusedClosureParam>
   </file>
+  <file src="test/Options/CorsOptionsTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsOptionsTest]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="test/Service/CorsServiceTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[CorsServiceTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$headers->get('Vary')->getFieldValue()]]></code>
     </MixedArgument>
@@ -286,6 +379,9 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/Util/ServiceManagerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ServiceManagerFactory]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$config['service_manager'] ?? []]]></code>
     </MixedArgument>
