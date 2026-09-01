@@ -38,7 +38,7 @@
         "laminas/laminas-eventmanager": "^3.6.0",
         "laminas/laminas-http": "^2.17",
         "laminas/laminas-mvc": "^3.4",
-        "laminas/laminas-servicemanager": "^3.18"
+        "laminas/laminas-servicemanager": "^3.18 || ^4.0"
     },
     "require-dev": {
         "laminas/laminas-modulemanager": "^2.18",
